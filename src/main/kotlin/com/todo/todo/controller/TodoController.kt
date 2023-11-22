@@ -5,6 +5,7 @@ import com.todo.todo.services.TodoService
 import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -20,16 +21,20 @@ class TodoController {
     @Autowired
     lateinit var todoService: TodoService
 
+    @CrossOrigin(origins = ["http://localhost:3000"])
     @PostMapping("/todo")
     fun createTodo(@Valid @RequestBody todo: TodoModal) : TodoModal {
         return todoService.createTodo(todo)
     }
 
+    @CrossOrigin(origins = ["http://localhost:3000"])
     @GetMapping("/todo")
     fun getAllTodo() : List<TodoModal>? {
         return todoService.getAllTodo()
     }
 
+
+    @CrossOrigin(origins = ["http://localhost:3000"])
     @PutMapping("/todo/{id}")
     fun updateTodo(
         @PathVariable("id") todoId : Long,
@@ -38,6 +43,7 @@ class TodoController {
         return todoService.updateTodo(todo, todoId)
     }
 
+    @CrossOrigin(origins = ["http://localhost:3000"])
     @DeleteMapping("/todo/{id}")
     fun deleteTodoById(
         @PathVariable("id") todoId : Long

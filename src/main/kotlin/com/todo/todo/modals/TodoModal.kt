@@ -24,7 +24,7 @@ class TodoModal {
     var description: String = ""
 
     @Column(name = "progress", nullable=false)
-    var progress: String = ""
+    var progress: Boolean = false
 
     @CreationTimestamp
     val createdAt: Date? = null
